@@ -1,8 +1,5 @@
 -i https://pypi.org/simple
-
-# local package
--e .
-
+-e file:///Users/jameswanderi/Play/omdena/WRI
 ago==0.0.93
 alabaster==0.7.12
 asn1crypto==0.24.0
