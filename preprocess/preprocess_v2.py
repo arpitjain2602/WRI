@@ -38,7 +38,7 @@ def get_steps_list(preprocess_steps_and_order, debug=False):
 	return steps_list
 
 
-def preprocess(raw_docs, preprocess_functions, preprocess_steps_and_order, debug=False):
+def preprocess(raw_docs, preprocess_functions, preprocess_steps_and_order, debug=False, sample_to_print=3):
 	'''
 	- raw_docs:# Note that raw docs is a numpy array. 
 		# Example element is: 
@@ -53,14 +53,16 @@ def preprocess(raw_docs, preprocess_functions, preprocess_steps_and_order, debug
 	start = time.time()
 	for step in steps_list:
 		if (len(preprocess_steps_and_order[step]) == 1): # The case where function does not requires arguements
-			doc_list = preprocess_functions[step](doc_list, debug=debug)
+			doc_list = preprocess_functions[step](doc_list, debug=debug, sample_to_print=sample_to_print)
 		elif (step == 'make_bigrams_gensim'):
 # 			print()
-			doc_list = preprocess_functions[step](doc_list, preprocess_steps_and_order[step][1]['bigrams_min_count'], preprocess_steps_and_order[step][1]['bigrams_threshold'], debug)
+			doc_list = preprocess_functions[step](doc_list, preprocess_steps_and_order[step][1]['bigrams_min_count'], preprocess_steps_and_order[step][1]['bigrams_threshold'], debug=debug, sample_to_print=sample_to_print)
 		elif (step == 'make_trigrams_gensim'):
-			doc_list = preprocess_functions[step](doc_list, preprocess_steps_and_order[step][1]['trigrams_min_count'], preprocess_steps_and_order[step][1]['trigrams_threshold'], debug)
+			doc_list = preprocess_functions[step](doc_list, preprocess_steps_and_order[step][1]['trigrams_min_count'], preprocess_steps_and_order[step][1]['trigrams_threshold'], debug=debug, sample_to_print=sample_to_print)
+		elif (step == 'pos_removal_nltk'):
+			doc_list = preprocess_functions[step](doc_list, preprocess_steps_and_order[step][1]['pos_removal_nltk_list'], debug=debug, sample_to_print=sample_to_print)
 		elif (step == 'min_max_length_removal'):
-			doc_list = preprocess_functions[step](doc_list, preprocess_steps_and_order[step][1]['mmlr_min_len'], preprocess_steps_and_order[step][1]['mmlr_max_len'], preprocess_steps_and_order[step][1]['mmlr_deacc'], debug)
+			doc_list = preprocess_functions[step](doc_list, preprocess_steps_and_order[step][1]['mmlr_min_len'], preprocess_steps_and_order[step][1]['mmlr_max_len'], preprocess_steps_and_order[step][1]['mmlr_deacc'], debug=debug, sample_to_print=sample_to_print)
 
 	
 	print('~~~ pre-processing done in ', time.time()-start)

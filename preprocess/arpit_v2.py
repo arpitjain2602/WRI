@@ -46,12 +46,13 @@ def to_dictionary_and_corpus(data, fe_no_below=1, fe_no_above=0.05, fe_keep_n=50
 	return dictionary, corpus
 
 
-def make_lowercase(data, debug=False):
+def make_lowercase(data, debug=False, sample_to_print=3):
 	'''
 	- input: data - list of documents
 	- output: data - list of documents after lowercasing everything
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	start = time.time()
@@ -60,12 +61,13 @@ def make_lowercase(data, debug=False):
 	print('\n       ##### Lowercasing Done! Time Taken - ',end-start)
 	return data
 
-def punctuation_removal(data, debug=False):
+def punctuation_removal(data, debug=False, sample_to_print=3):
 	'''
 	- input: data - list of documents
 	- output: data - list of documents after removing punctuation
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	start = time.time()
@@ -74,12 +76,13 @@ def punctuation_removal(data, debug=False):
 	print('\n       ##### Punctuation removed! Time Taken - ',end-start)
 	return data
 
-def whitespace_removal(data, debug=False):
+def whitespace_removal(data, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	start = time.time()
@@ -93,16 +96,17 @@ def whitespace_removal(data, debug=False):
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------
 # POS Spacy
-pos_removal_spacy_list = ['ADV','PRON','CCONJ','PUNCT','PART','DET','ADP','SPACE']
+# pos_removal_spacy_list = ['ADV','PRON','CCONJ','PUNCT','PART','DET','ADP','SPACE']
 # POS NLTK
-pos_removal_nltk_list = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ',  'PRP','PRP$',  'RB','RBR','RBS','RP',  'JJ','JJR','JJS',   'CC','DT','EX','IN',   'WDT','WP','WP$','WRB']
+# pos_removal_nltk_list = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ',  'PRP','PRP$',  'RB','RBR','RBS','RP',  'JJ','JJR','JJS',   'CC','DT','EX','IN',   'WDT','WP','WP$','WRB']
 
-def pos_removal_nltk(data, pos_removal_nltk_list=pos_removal_nltk_list, debug=False):
+def pos_removal_nltk(data, pos_removal_nltk_list, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	# NLTK
@@ -128,12 +132,13 @@ def pos_removal_nltk(data, pos_removal_nltk_list=pos_removal_nltk_list, debug=Fa
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------
 # TOKENIZATION
-def tokenization_nltk(data, debug=False):
+def tokenization_nltk(data, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	# Using NLTK
@@ -145,12 +150,13 @@ def tokenization_nltk(data, debug=False):
 	print('\n       ##### Tokenization Done using NLTK! Time Taken - ', end-start)
 	return data
 
-def lemmatization_tokenization_spacy(data, debug=False):
+def lemmatization_tokenization_spacy(data, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	# Spacy Lemmatizer
@@ -200,13 +206,14 @@ def BinarySearch(a, x):
 	else: 
 		return -1
 
-def stopwords_removal_nltk(data, stop_words_nltk=stop_words_nltk, debug=False):
+def stopwords_removal_nltk(data, stop_words_nltk=stop_words_nltk, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
-		print("stopwords_removal_nltk data_sample out of ",len(data))
+		print('--')
+		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	#using NLTK
 	start = time.time()
@@ -216,12 +223,13 @@ def stopwords_removal_nltk(data, stop_words_nltk=stop_words_nltk, debug=False):
 	print('\n       ##### Stopwords Removed using NLTK! Time Taken - ',end-start)
 	return data
 
-def stopwords_removal_spacy(data, debug=False):
+def stopwords_removal_spacy(data, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
+		print('--')
 		print("stopwords_removal_spacy data_sample out of ",len(data)) 
 		print(data[:sample_to_print])
 	#using SPACY
@@ -251,12 +259,13 @@ def stopwords_removal_spacy(data, debug=False):
 # N-GRAMS
 # Can add language model as well here
 
-def make_bigrams_gensim(data, bigrams_min_count, bigrams_threshold, debug=False):
+def make_bigrams_gensim(data, bigrams_min_count, bigrams_threshold, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print]) 
 	# Gensim
@@ -268,12 +277,13 @@ def make_bigrams_gensim(data, bigrams_min_count, bigrams_threshold, debug=False)
 	return data
 
 
-def make_trigrams_gensim(data, trigrams_min_count, trigrams_threshold, debug=False):
+def make_trigrams_gensim(data, trigrams_min_count, trigrams_threshold, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print]) 
 	# Gensim
@@ -288,12 +298,13 @@ def make_trigrams_gensim(data, trigrams_min_count, trigrams_threshold, debug=Fal
 
 
 
-def min_max_length_removal(data, mmlr_min_len, mmlr_max_len, mmlr_deacc, debug=False):
+def min_max_length_removal(data, mmlr_min_len, mmlr_max_len, mmlr_deacc, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	# Gensim
@@ -304,13 +315,14 @@ def min_max_length_removal(data, mmlr_min_len, mmlr_max_len, mmlr_deacc, debug=F
 	return data
 
 
-def store_alphanumeric(data, debug=False):
+def store_alphanumeric(data, debug=False, sample_to_print=3):
 	'''
 	- input: data - 
 	- output: data - 
 	'''
 	alpha_numeric_word_list = list()
 	if(debug):
+		print('--')
 		print("data_sample out of ",len(data))
 		print(data[:sample_to_print])
 	start = time.time()
