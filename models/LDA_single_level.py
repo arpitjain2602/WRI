@@ -24,6 +24,14 @@ def get_topics(lda_model):
 		print(' ')
 
 def evaluate_model(lda_model, dictionary, corpus, doc_list, coherence = 'c_v', debug=False):
+	'''
+	C_v measure is based on a sliding window, one-set segmentation of the top words and an indirect confirmation measure that uses normalized pointwise mutual information (NPMI) and the cosine similarity
+	C_p is based on a sliding window, one-preceding segmentation of the top words and the confirmation measure of Fitelson’s coherence
+	C_uci measure is based on a sliding window and the pointwise mutual information (PMI) of all word pairs of the given top words
+	C_umass is based on document cooccurrence counts, a one-preceding segmentation and a logarithmic conditional probability as confirmation measure
+	C_npmi is an enhanced version of the C_uci coherence using the normalized pointwise mutual information (NPMI)
+	C_a is baseed on a context window, a pairwise comparison of the top words and an indirect confirmation measure that uses normalized pointwise mutual information (NPMI) and the cosine similarity
+	'''
 	start = time.time()
 
 	# Compute Perplexity
@@ -41,6 +49,8 @@ def evaluate_model(lda_model, dictionary, corpus, doc_list, coherence = 'c_v', d
 	if(debug):
 		print('\nTime Taken: ', end-start)
 	return coherence_lda, perplexity
+
+
 
 
 def lda_model_single_level(
@@ -114,7 +124,9 @@ def lda_model_single_level(
 							'corpus': corpus,
 							'dictionary': dictionary,
 							'doc_list': doc_list,
-							'all_models': lda_models_level_1}
+							'all_models': lda_models_level_1,
+							'coherence_score_list': coherence_list,
+							'perplexity_score_list': perplexity_list}
 
 	print('Done Single-Level LDA')
 	return lda_level_1
