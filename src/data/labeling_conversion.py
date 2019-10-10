@@ -4,6 +4,8 @@ from typing import Dict
 import json
 import jsonlines as jsl
 from tqdm import tqdm
+from settings import PROJECT_PATH
+import os
 
 
 def read_labels_dict(labels_filepath: str) -> Dict:
@@ -58,4 +60,6 @@ def convert_labelled_data(annotation_filepath: str, labels_filepath: str,
 
 
 if __name__ == "__main__":
-    convert_labelled_data("labelled.json", "positive_negative_label_mapping.json", "converted.csv")
+    destination_path = os.path.join(PROJECT_PATH, 'data', 'gold-standard', 'manually_annotated.csv')
+    # you should point to annotated labels after you download them (first parameter)
+    convert_labelled_data("labelled.json", "positive_negative_label_mapping.json", destination_path)
