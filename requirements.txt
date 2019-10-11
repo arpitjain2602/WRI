@@ -1,3 +1,4 @@
+jsonlines
 -i https://pypi.org/simple
 
 # local package
@@ -94,3 +95,4 @@ urllib3==1.25.3 ; python_version >= '3.4'
 w3lib==1.21.0
 warcio==1.7.1
 zope.interface==4.6.0
+jsonline
