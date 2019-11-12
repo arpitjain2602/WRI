@@ -48,7 +48,11 @@ def document_classifier(text):
 	topics = topic_modeling(text)
 
 	# policy match using cosine similarity
-	matched_policy, cosine_similarity_score = policy_match(text)
+	if len(topics) > 0:
+		matched_policy, cosine_similarity_score = policy_match(text)
+	else:
+		# not land related conflict, return
+		return False, {}, '', 0
 
 	return True, topics, matched_policy, cosine_similarity_score
 
